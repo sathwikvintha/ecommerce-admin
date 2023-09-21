@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const dummy = [
   { id: 1 },
@@ -25,6 +26,29 @@ const dummy = [
   { id: 10 },
 ];
 export default function Home() {
+
+
+  const [data,setData]=useState([])
+
+  async function getCategory(){
+    try {
+      const response=await fetch("https://admin-dashboard-eight-ebon.vercel.app/api/category")      
+      const data=await response.json()
+      if(response.ok){
+        console.log(data)
+      }
+
+
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
+
+  useEffect(()=>{
+    getCategory()
+  })
   return (
     <div className="w-screen mt-3  px-1 lg:px-3">
     <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">Featured Products</h1>
