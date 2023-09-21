@@ -27,9 +27,9 @@ const dummy = [
 export default function Home() {
   return (
     <div className="w-screen mt-3  px-1 lg:px-3">
-    <h1 className="ml-3 lg:ml-5   font-bold text-3xl ">Featured Products</h1>
+    <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">Featured Products</h1>
    
-      <div className="w-full flex flex-wrap m-3  items-center">
+      <div className="w-full flex flex-wrap mt-3  justify-center items-center">
         {dummy.map((a) => (
           <Card
             key={a.id}
