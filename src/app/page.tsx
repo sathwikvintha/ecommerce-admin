@@ -25,59 +25,64 @@ const dummy = [
   { id: 9 },
   { id: 10 },
 ];
+
+interface Images {
+  id: number;
+  url: string;
+}
+
+interface DataType {
+  id: number;
+  images: Images[];
+  price: number;
+  name: string;
+  description: string;
+}
 export default function Home() {
+  const [data, setData] = useState<DataType[]>([]);
 
-
-  const [data,setData]=useState([])
-
-  async function getCategory(){
+  async function getCategory() {
     try {
-      const response=await fetch("https://admin-dashboard-eight-ebon.vercel.app/api/category")      
-      const data=await response.json()
-      if(response.ok){
-        console.log(data)
+      const response = await fetch("https://admin-dashboard-eight-ebon.vercel.app/api/products");
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.message);
+        setData(data.message);
       }
-
-
     } catch (error) {
-      console.log(error)
-      
+      console.log(error);
     }
   }
 
-
-  useEffect(()=>{
-    getCategory()
-  })
+  useEffect(() => {
+    getCategory();
+  });
   return (
     <div className="w-screen mt-3  px-1 lg:px-3">
-    <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">Featured Products</h1>
-   
+      <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">Featured Products</h1>
+
       <div className="w-full flex flex-wrap mt-3  justify-center items-center">
-        {dummy.map((a) => (
+        {data.map((a) => (
           <Card
             key={a.id}
             isFooterBlurred
-            className="max-w-[300px] max-h-[300px]  m-3  "
+            className=" max-w-[300px] max-h-[300px]  m-3  "
           >
             <CardHeader className="absolute z-10 top-1 flex-col items-start">
               <p className="text-tiny text-black uppercase font-bold">
-                Nike shoes
+                {a.name}
               </p>
-              <h4 className="text-white/60 font-medium text-xs">₹12,000</h4>
+              <h4 className="text-white/60 font-medium text-xs">₹{a.price}</h4>
             </CardHeader>
             <Image
               removeWrapper
               alt="Card example background"
               className="z-0 w-full h-full scale-125 -translate-y-6 object-cover"
-              src="https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/ca4c3078-7982-4c62-b85f-15bbd34794a0/air-jordan-6-retro-shoes-4m3b9d.png"
+              src={a.images[0].url}
             />
             <CardFooter className="absolute bg-white/30 bottom-0 border-t-1 border-zinc-100/50 z-10 justify-between">
               <div>
-                <p className="text-black  text-xs">
-                  Nike Jordon 65 of Size 11(UK).
-                </p>
-                <p className="text-black text-tiny">used 3 months.</p>
+                <p className="text-black  text-xs">{a.description}</p>
               </div>
               <Button
                 className="text-tiny  px-2"
