@@ -1,30 +1,12 @@
 "use client";
 
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Divider,
-  Image,
-} from "@nextui-org/react";
-import { ExternalLink } from "lucide-react";
+import { Select, SelectSection, SelectItem } from "@nextui-org/react";
+import { Button, Card, CardFooter, CardHeader, Image } from "@nextui-org/react";
+import { ExternalLink, Filter, FilterIcon, FilterXIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const dummy = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-  { id: 5 },
-  { id: 6 },
-  { id: 7 },
-  { id: 8 },
-  { id: 9 },
-  { id: 10 },
-];
+
 
 interface Images {
   id: number;
@@ -40,10 +22,14 @@ interface DataType {
 }
 export default function Home() {
   const [data, setData] = useState<DataType[]>([]);
+  const [data1,setData1]=useState([])
 
-  async function getCategory() {
+  async function getProducts() {
     try {
-      const response = await fetch("https://admin-dashboard-eight-ebon.vercel.app/api/products");
+      const response = await fetch(
+        "https://admin-dashboard-eight-ebon.vercel.app/api/products"
+      );
+      
       const data = await response.json();
       if (response.ok) {
         console.log(data.message);
@@ -54,18 +40,25 @@ export default function Home() {
     }
   }
 
+  
+
   useEffect(() => {
-    getCategory();
+    getProducts()
+    
   });
   return (
     <div className="w-screen mt-3  px-1 lg:px-3">
-      <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">Featured Products</h1>
+      <div className="w-full flex justify-between">
+        <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">
+          Featured Products
+        </h1>
+       
+      </div>
 
       <div className="w-full flex flex-wrap mt-3  justify-center items-center">
         {data.map((a) => (
           <Card
             key={a.id}
-            isFooterBlurred
             className=" max-w-[300px] max-h-[300px]  m-3  "
           >
             <CardHeader className="absolute z-10 top-1 flex-col items-start">

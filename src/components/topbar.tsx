@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-
+import { useState, useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -13,75 +12,50 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 
+interface Category {
+  id: number;
+  name: string;
+}
+
 export default function Topbar() {
-  const menuItems = [
-    "Sports Equipment",
-    "Cycles and Accessories",
-    "Furniture and Room Decor",
-    "Clothing and Fashion Accessories",
-    "Sign In",
-  ];
+  const [data, setData] = useState<Category[]>([]);
+
+  async function getCategory() {
+    try {
+      const response = await fetch(
+        "https://admin-dashboard-eight-ebon.vercel.app/api/category"
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log(data.message);
+        setData(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getCategory();
+  });
 
   return (
-    <Navbar  isBordered>
-      <NavbarContent className="sm:hidden" justify="start">
+    <Navbar isBordered>
+      <NavbarContent justify="center">
+        <NavbarBrand>
+          <p className="font-bold ">SNX</p>
+        </NavbarBrand>
+      </NavbarContent>
+      <NavbarContent className="flex " justify="end">
         <NavbarMenuToggle />
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
-          <p className="font-bold text-inherit">SNX</p>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarBrand>
-          <p className="font-bold text-inherit">SNX</p>
-        </NavbarBrand>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-          Clothing and Fashion Accessories
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page" color="warning">
-           Sports
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Room Decor
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-
       <NavbarMenu>
-        {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link
-              className="w-full"
-              color={
-                index === 2
-                  ? "warning"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
-              href="#"
-              size="lg"
-            >
-              {item}
+        {data.map((item, index) => (
+          <NavbarMenuItem key={item.id}>
+            <Link className="w-full" href="#" size="lg">
+              {item.name}
             </Link>
           </NavbarMenuItem>
         ))}
