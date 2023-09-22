@@ -12,34 +12,10 @@ import {
   NavbarMenuItem,
 } from "@nextui-org/react";
 
-interface Category {
-  id: number;
-  name: string;
-}
+import { cn } from "@/lib/utils";
+import CategoriesView from "./categories-view";
 
 export default function Topbar() {
-  const [data, setData] = useState<Category[]>([]);
-
-  async function getCategory() {
-    try {
-      const response = await fetch(
-        "https://admin-dashboard-eight-ebon.vercel.app/api/category"
-      );
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data.message);
-        setData(data.message);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  useEffect(() => {
-    getCategory();
-  });
-
   return (
     <Navbar isBordered>
       <NavbarContent justify="center">
@@ -47,19 +23,9 @@ export default function Topbar() {
           <p className="font-bold ">SNX</p>
         </NavbarBrand>
       </NavbarContent>
-      <NavbarContent className="flex " justify="end">
-        <NavbarMenuToggle />
+      <NavbarContent justify="start">
+        <CategoriesView />
       </NavbarContent>
-
-      <NavbarMenu>
-        {data.map((item, index) => (
-          <NavbarMenuItem key={item.id}>
-            <Link className="w-full" href="#" size="lg">
-              {item.name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
     </Navbar>
   );
 }
