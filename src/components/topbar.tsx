@@ -1,31 +1,29 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
-} from "@nextui-org/react";
+import { Button, Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
 
-import { cn } from "@/lib/utils";
 import CategoriesView from "./categories-view";
+import Link from "next/link";
+import { Plus } from "lucide-react";
 
 export default function Topbar() {
   return (
     <Navbar isBordered>
-      <NavbarContent justify="center">
-        <NavbarBrand>
-          <p className="font-bold ">SNX</p>
-        </NavbarBrand>
-      </NavbarContent>
       <NavbarContent justify="start">
+        <Link href="/" className="text-xl font-bold">
+          SNX
+        </Link>
+      </NavbarContent>
+      <NavbarContent justify="center">
         <CategoriesView />
       </NavbarContent>
+      <NavbarContent justify="end">
+        <Button>
+          Sell
+          <Plus />
+        </Button>
+      </NavbarContent>
+      
     </Navbar>
   );
 }

@@ -52,7 +52,6 @@ export default function Home() {
         <h1 className="ml-8 lg:ml-14  font-bold text-3xl ">
           Featured Products
         </h1>
-       
       </div>
 
       <div className="w-full flex flex-wrap mt-3  justify-center items-center">
@@ -61,11 +60,11 @@ export default function Home() {
             key={a.id}
             className=" max-w-[300px] max-h-[300px]  m-3  "
           >
-            <CardHeader className="absolute z-10 top-1 flex-col items-start">
-              <p className="text-tiny text-black uppercase font-bold">
+            <CardHeader className="absolute z-10 top-0 flex-col w-1/32 items-start bg-white rounded-md border-0 text-black ">
+              <p className="text-tiny  uppercase font-bold">
                 {a.name}
               </p>
-              <h4 className="text-white/60 font-medium text-xs">₹{a.price}</h4>
+              <h4 className=" font-medium text-xs">₹{a.price}</h4>
             </CardHeader>
             <Image
               removeWrapper
