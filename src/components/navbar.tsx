@@ -14,7 +14,7 @@ const Navbar: FC<NavbarProps> = () => {
       </Link>
       <div className="flex items-center gap-5">
         <Link href="/" className="font-bold">Contact Us</Link>
-        <Link href="/" className={buttonVariants()}>
+        <Link href="/add-product" className={buttonVariants()}>
           Sell
           <Plus className="w-4 h-4 ml-2" />
         </Link>

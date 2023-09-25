@@ -22,7 +22,6 @@ const CartModal: FC<CartModalProps> = () => {
           <span className="ml-2">0</span>
         </Button>
       </SheetTrigger>
-      {/* @ts-expect-error*/}
       <SheetContent>
         <SheetHeader>
           <SheetTitle>Your Items</SheetTitle>
