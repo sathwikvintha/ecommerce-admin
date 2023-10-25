@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import ImageUpload from "@/components/ui/image-upload";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface AddProductPageProps {}
 
@@ -29,7 +30,7 @@ const FormSchema = z.object({
     .min(3, "Product Name must be at least 3 characters")
     .max(20, "Product Name must be less than 20 characters"),
   images: z.object({ url: z.string() }).array(),
-  phoneNo: z.number().positive("Phone Number must not negative"),
+  phoneNo: z.string(),
   email: z.string().email("INVALID EMAIL"),
 });
 
@@ -37,25 +38,40 @@ const defaultValues = {
   name: "",
   images: [],
   email: "",
-  phoneNo: 0,
+  phoneNo: "",
   price: 0,
   description: "",
 };
 
-async function onSubmit(productData: z.infer<typeof FormSchema>) {
-  try {
-    console.log(productData);
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
+
 
 const AddProductPage: FC<AddProductPageProps> = () => {
+
   const [loading, setLoading] = useState<boolean>(false);
+  const router=useRouter()
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues,
   });
+  async function onSubmit(productData: z.infer<typeof FormSchema>) {
+    try {
+      const response=await fetch("https://admin-dashboard-seven-bay.vercel.app/api/requestedProducts",{
+        method: "POST",
+        body:JSON.stringify(productData)
+  
+      })
+      const data = await response.json();
+      if(response.ok){
+        
+        router.push("/")
+      }
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  }
+
+
+  
   return (
     <div className="w-screen h-auto flex items-center justify-center mt-5">
       
@@ -81,12 +97,9 @@ const AddProductPage: FC<AddProductPageProps> = () => {
               <FormItem>
                 <FormLabel>Phone Number</FormLabel>
                 <Input
-                  type="number"
                   placeholder="999999999"
                   {...field}
-                  onChange={(e) => {
-                    field.onChange(parseInt(e.target.value));
-                  }}
+                 
                 />
               </FormItem>
             )}
