@@ -16,7 +16,7 @@ import ImageUpload from "@/components/ui/image-upload";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-
+import {sendEmail} from "../../../actions/send-email"
 
 
 interface AddProductPageProps {}
@@ -65,6 +65,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
       })
       const data = await response.json();
       if(response.ok){
+        sendEmail(productData.name,productData.email)
         
         router.push("/")
       }
