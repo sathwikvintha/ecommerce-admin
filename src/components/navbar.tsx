@@ -10,7 +10,7 @@ const Navbar: FC<NavbarProps> = () => {
   return (
     <div className="px-14 py-4 border flex items-center justify-between">
       <Link href="/" className="font-bold text-2xl">
-        SLX
+        SNX
       </Link>
       <div className="flex items-center gap-5">
         <Link href="/" className="font-bold">Contact Us</Link>
