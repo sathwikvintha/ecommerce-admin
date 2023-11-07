@@ -6,7 +6,7 @@ const plunk = new Plunk(process.env.PLUNK_API_KEY);
 export const sendEmail = async (name,email) => {
   const response = await plunk.emails.send({
     to: email,
-    subject: "Your SNX Order Has Been Accepted",
+    subject: "Your request for listing the product on SNX has been recieved",
     body: `<div style="font-size: 18px;">
     Hello ${name},
     <hr style="width: 0px;">
