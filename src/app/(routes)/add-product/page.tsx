@@ -17,6 +17,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
+
+
 interface AddProductPageProps {}
 
 const FormSchema = z.object({
@@ -55,6 +57,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
   });
   async function onSubmit(productData: z.infer<typeof FormSchema>) {
     try {
+      setLoading(true)
       const response=await fetch("https://admin-dashboard-seven-bay.vercel.app/api/requestedProducts",{
         method: "POST",
         body:JSON.stringify(productData)
@@ -67,6 +70,9 @@ const AddProductPage: FC<AddProductPageProps> = () => {
       }
     } catch (error: any) {
       console.log(error.message);
+    }finally{
+      setLoading(false)
+
     }
   }
 
@@ -75,18 +81,18 @@ const AddProductPage: FC<AddProductPageProps> = () => {
   return (
     <div className="w-screen h-auto flex items-center justify-center mt-5">
       
-      <Form {...form}>
-        <form
+      <Form {...form} >
+        <form 
           className="w-2/3 space-y-6"
           onSubmit={form.handleSubmit(onSubmit)}
         >
-          <FormField
+          <FormField 
             control={form.control}
             name="email"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
-                <Input placeholder="test@test.com" {...field} />
+                <Input placeholder="test@test.com" disabled={loading} {...field} />
               </FormItem>
             )}
           />
@@ -99,6 +105,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
                 <Input
                   placeholder="999999999"
                   {...field}
+                  disabled={loading}
                  
                 />
               </FormItem>
@@ -111,7 +118,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name of Product</FormLabel>
-                <Input placeholder="Mama Earth" {...field} />
+                <Input  disabled={loading} placeholder="Mama Earth" {...field} />
               </FormItem>
             )}
           />
@@ -130,6 +137,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
                       field.onChange(parseFloat(e.target.value));
                     }}
                     placeholder="in Rupees"
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -168,13 +176,13 @@ const AddProductPage: FC<AddProductPageProps> = () => {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Textarea {...field} />
+                  <Textarea  disabled={loading} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={loading}>Submit</Button>
         </form>
       </Form>
       
