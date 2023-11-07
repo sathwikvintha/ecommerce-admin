@@ -119,7 +119,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name of Product</FormLabel>
-                <Input  disabled={loading} placeholder="Mama Earth" {...field} />
+                <Input  disabled={loading} placeholder="Mama Earth..." {...field} />
               </FormItem>
             )}
           />
