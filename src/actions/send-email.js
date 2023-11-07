@@ -8,7 +8,7 @@ export const sendEmail = async (name,email) => {
     to: email,
     subject: "Your request for listing the product on SNX has been recieved",
     body: `<div style="font-size: 18px;">
-    Hello ${name},
+    Hello ,
     <hr style="width: 0px;">
     We hope you're well. Your recent product with SNX is currently pending and is expected to be processed within the next 3-5 business days. We appreciate your patience.
 Rest assured.
