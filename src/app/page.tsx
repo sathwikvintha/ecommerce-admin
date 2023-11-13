@@ -1,13 +1,21 @@
-"use client"
-import Image from 'next/image'
-import {ChevronLeft, ChevronRight, Loader2, ShoppingCart} from "lucide-react"
-import { useEffect, useState } from 'react'
+"use client";
+import Image from "next/image";
+import { ChevronLeft, ChevronRight, Loader2, ShoppingCart } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Hero from "@/components/hero";
 
 interface Images {
   id: number;
@@ -84,85 +92,71 @@ export default function Home() {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
-  async function getProducts(){
+  async function getProducts() {
     try {
-      setLoading(true)
-      const response=await fetch("https://admin-dashboard-seven-bay.vercel.app/api/products")
-      const data=await response.json()
+      setLoading(true);
+      const response = await fetch(
+        "https://admin-dashboard-seven-bay.vercel.app/api/products"
+      );
+      const data = await response.json();
       setData(data.message);
-      
     } catch (error) {
-      
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
-
   }
 
-
-
-  useEffect(()=>{
-    getProducts()
-  },[])
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
     <>
-    <div className='mt-5 px-5'>
-    {loading ? (
+      <div className="mt-5 ">
+        <Hero/>
+        {/* {loading ? (
           <div className="flex justify-center  items-center">
             <Loader2 className="animate-spin" />
           </div>
         ) : data.length > 0 ? (
-          <div className='flex gap-x-5 gap-y-5 flex-wrap justify-center'>
+          <div className="flex gap-x-5 gap-y-5 flex-wrap justify-center">
             {data.map((a) => (
-              <div
-                key={a.id}
-                
-              >
-               
-                <Card className='p-3   overflow-hidden'>
-  <CardHeader>
-    <CardTitle>{a.name}</CardTitle>
-    <CardDescription>{a.description}</CardDescription>
-  </CardHeader>
-  <CardContent>
-  <div className="w-40 lg:w-52 ">
-                  <Slider {...settings}>
-                    {a.images.map((img) => (
-                      <div
-                        className="flex justify-center items-center"
-                        key={img.id}
-                      >
-                        <Image
-                          alt={a.name}
-                          src={img.url}
-                          width={300}
-                          height={200}
-                        />
-                      </div>
-                    ))}
-                  </Slider>
-                </div>
-  </CardContent>
-  <CardFooter className='flex justify-between gap-6 items-center'>
-  <p className="font-semibold">Price: ₹{a.price}</p>
-  <Button>View Product</Button>
-  </CardFooter>
-</Card>
-
-
-                
-                  
-
-                 
-                </div>
-            
+              <div key={a.id}>
+                <Card className="p-3   overflow-hidden">
+                  <CardHeader>
+                    <CardTitle>{a.name}</CardTitle>
+                    <CardDescription>{a.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="w-40 lg:w-52 ">
+                      <Slider {...settings}>
+                        {a.images.map((img) => (
+                          <div
+                            className="flex justify-center items-center"
+                            key={img.id}
+                          >
+                            <Image
+                              alt={a.name}
+                              src={img.url}
+                              width={300}
+                              height={200}
+                            />
+                          </div>
+                        ))}
+                      </Slider>
+                    </div>
+                  </CardContent>
+                  <CardFooter className="flex justify-between gap-6 items-center">
+                    <p className="font-semibold">Price: ₹{a.price}</p>
+                    <Button>View Product</Button>
+                  </CardFooter>
+                </Card>
+              </div>
             ))}
           </div>
         ) : (
           <p>No items</p>
-        )}
-    </div>
-    
+        )} */}
+      </div>
     </>
-  )
+  );
 }
