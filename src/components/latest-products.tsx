@@ -107,7 +107,7 @@ export default function LatestProducts() {
         </div>
       </div>
       <section className="lg:-ml-9 w-full ">
-        {!loading ? (
+        {loading ? (
           <div className="flex justify-center  ">
             <LatestProductsLoader />
           </div>
