@@ -102,17 +102,17 @@ export default function LatestProducts() {
         <p className="text-sm text-gray-600">
           Explore more than 100+ products
         </p>
-        <Link href="/" className=" flex items-center gap-2 text-sm text-[#2663e7] font-semibold group">Shop the Collections <MoveRight className="h-4 w-4 mt-1 group-hover:translate-x-1 transition-all "/></Link>
+        <Link href="/" className=" flex items-center gap-2  text-sm text-[#2663e7] font-semibold group"><p className="hidden lg:flex">Shop the Collections</p> <MoveRight className=" h-4 w-4 mt-1 group-hover:translate-x-1 transition-all "/></Link>
 
         </div>
       </div>
-      <section className=" -ml-9">
+      <section className="lg:-ml-9 w-full ml-9 ">
         {loading ? (
           <div className="flex justify-center  ">
             <LatestProductsLoader />
           </div>
         ) : data.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mx-auto ">
             {data.map((a) => (
               <div key={a.id}>
                 <Card className="p-3 border-0  overflow-hidden">
@@ -140,8 +140,8 @@ export default function LatestProducts() {
                     </div>
                   </CardContent>
                   <CardFooter className="flex gap-5  items-center">
-                    <p className="font-semibold">Price: ₹{a.price}</p>
-                    <Button  size={"sm"}>Add to Cart</Button>
+                    <p className="font-semibold text-sm">Price: ₹{a.price}</p>
+                    <Button  size={"sm"} className="text-sm">Add to Cart</Button>
                   </CardFooter>
                 </Card>
               </div>
