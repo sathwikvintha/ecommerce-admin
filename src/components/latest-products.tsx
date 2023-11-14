@@ -106,13 +106,13 @@ export default function LatestProducts() {
 
         </div>
       </div>
-      <section className="lg:-ml-9 w-full ml-8 ">
+      <section className="lg:-ml-9 w-full ">
         {!loading ? (
           <div className="flex justify-center  ">
             <LatestProductsLoader />
           </div>
         ) : data.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mx-auto ">
+          <div className="grid grid-cols-1 ml-8 lg:ml-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mx-auto ">
             {data.map((a) => (
               <div key={a.id}>
                 <Card className="p-3 border-0  overflow-hidden">
