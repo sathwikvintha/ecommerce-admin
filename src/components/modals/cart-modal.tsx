@@ -16,7 +16,7 @@ interface CartModalProps {}
 const CartModal: FC<CartModalProps> = () => {
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger asChild>
         <Button variant={"ghost"} className="cursor-pointer">
           <ShoppingCart />
           <span className="ml-2">0</span>
