@@ -30,7 +30,7 @@ export default function ProductCard({ data }: { data: RequestedProduct }) {
         return element.url;
       });
   return (
-    <div key={data.id}>
+    <div >
       <Card className="p-3 border-0  overflow-hidden">
         <CardHeader>
           <CardTitle>{data.name}</CardTitle>

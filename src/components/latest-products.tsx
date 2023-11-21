@@ -70,7 +70,7 @@ export default function LatestProducts() {
         ) : data.length > 0 ? (
           <div className="grid grid-cols-1 ml-8 lg:ml-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mx-auto ">
             {data.map((data) => (
-              <ProductCard data={data}/>
+              <ProductCard data={data} key={data.id}/>
             ))}
           </div>
         ) : null}
