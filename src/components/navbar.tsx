@@ -2,7 +2,7 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
 import { buttonVariants } from "./ui/button";
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import { LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
 import Cart from "./cart-modal";
 
 interface NavbarProps {
@@ -16,11 +16,12 @@ const Navbar: FC<NavbarProps> = ({ isLogin }) => {
         SNX
       </Link>
       <div className="flex items-center gap-5">
-        <Link href="/" className="font-bold hidden lg:flex">
-          Contact Us
-        </Link>
+        
         {isLogin ? (
           <>
+          <LogoutLink>
+          Logout
+        </LogoutLink>
             <Link href="/add-product" className={buttonVariants()}>
               Sell
               <Plus className="w-4 h-4 ml-2" />
