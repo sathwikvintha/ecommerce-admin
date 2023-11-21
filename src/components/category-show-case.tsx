@@ -102,7 +102,7 @@ export default function CategoryShowCase() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.length === 0 ? (
-          <div className="w-screen lg:-ml-16 flex flex-col justify-center items-center ">
+          <div className="w-full flex flex-col justify-center items-center ">
             <Image src="https://res.cloudinary.com/dbtqwzdk0/image/upload/v1700559009/hello_zj36yg.png" alt="no products" height={300} width={300}/>
             <Link
             href="/add-product"
