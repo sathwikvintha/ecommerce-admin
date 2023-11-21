@@ -18,13 +18,14 @@ export function formatPrice(
   const numericPrice =
     typeof price === 'string' ? parseFloat(price) : price
 
-  return new Intl.NumberFormat('en-US', {
+  return new Intl.NumberFormat('en-IN', { // 'en-IN' for Indian English locale
     style: 'currency',
     currency,
     notation,
     maximumFractionDigits: 2,
   }).format(numericPrice)
 }
+
 
 
 

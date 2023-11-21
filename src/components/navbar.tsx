@@ -1,9 +1,9 @@
-import { Dice1, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { FC } from "react";
 import { buttonVariants } from "./ui/button";
-import CartModal from "./modals/cart-modal";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/server";
+import Cart from "./cart-modal";
 
 interface NavbarProps {
   isLogin: boolean;
@@ -25,7 +25,7 @@ const Navbar: FC<NavbarProps> = ({ isLogin }) => {
               Sell
               <Plus className="w-4 h-4 ml-2" />
             </Link>
-            <CartModal />
+            <Cart/>
           </>
         ) : (
           <LoginLink className={buttonVariants()}>Sign in</LoginLink>
