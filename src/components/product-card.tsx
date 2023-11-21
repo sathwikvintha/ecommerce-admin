@@ -9,6 +9,7 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import ImageSlider from "./image-silder";
+import Link from "next/link";
 
 interface Images {
   id: number;
@@ -30,22 +31,16 @@ export default function ProductCard({ data }: { data: RequestedProduct }) {
         return element.url;
       });
   return (
-    <div >
-      <Card className="p-3 border-0  overflow-hidden">
-        <CardHeader>
-          <CardTitle>{data.name}</CardTitle>
-          <CardDescription>{data.description}</CardDescription>
-        </CardHeader>
+    <Link href={`/product/${data.id}`} >
+      <Card className=" border-0  mt-6 p-3 overflow-hidden cursor-pointer hover:scale-105 transition-all">
         <CardContent>
             <ImageSlider urls={urls}/>
         </CardContent>
-        <CardFooter className="flex gap-5  items-center">
-          <p className="font-semibold text-sm">Price: ₹{data.price}</p>
-          <Button size={"sm"} className="text-sm">
-            Add to Cart
-          </Button>
+        <CardFooter className="flex flex-col -mt-3 justify-start items-start">
+          <p className=" font-semibold">{data.name}</p>
+          <p className="font-semibold text-sm">₹{data.price}</p>
         </CardFooter>
       </Card>
-    </div>
+    </Link>
   );
 }

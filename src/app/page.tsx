@@ -1,6 +1,7 @@
 import CategoryProducts from "@/components/category-products";
 import Hero from "@/components/hero";
 import LatestProducts from "@/components/latest-products";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
 import { LogoutLink, getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
@@ -14,11 +15,11 @@ export default async  function Home() {
 
   return (
     <>
-      <div className="flex flex-col justify-center  px-12 lg:px-16 mt-20 gap-5">
+      <MaxWidthWrapper >
         <Hero />
         <LatestProducts />
         <CategoryProducts/>
-      </div>
+      </MaxWidthWrapper>
     </>
   );
 }

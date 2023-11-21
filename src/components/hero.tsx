@@ -13,7 +13,7 @@ export default async function Hero() {
   const { isAuthenticated } = getKindeServerSession();
   const isLogin = await isAuthenticated();
   return (
-    <div className="flex flex-col justify-center items-center  gap-6  ">
+    <div className="flex flex-col justify-center items-center  gap-6 lg:mt-24 mt-12  ">
       <h1 className="text-black lg:text-7xl text-3xl font-[600] text-center">
         Exchange and connect. <hr className="w-0" /> Your campus{" "}
         <span className="text-[#2663e7]">your deals</span>
