@@ -26,7 +26,7 @@ export default function LatestProductsLoader() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="w-40 lg:w-52">
+            <div className="w-48 lg:w-60">
               <Skeleton className=" aspect-square overflow-hidden rounded-xl " />
             </div>
           </CardContent>
