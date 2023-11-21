@@ -10,12 +10,12 @@ interface Item {
   name: string;
 }
 
-interface Images {
+export interface Images {
   id: number;
   url: string;
 }
 
-interface RequestedProduct {
+export interface RequestedProduct {
   id: number;
   name: string;
   images: Images[];
