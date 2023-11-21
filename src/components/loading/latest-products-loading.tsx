@@ -27,7 +27,7 @@ export default function LatestProductsLoader() {
           </CardHeader>
           <CardContent>
             <div className="w-40 lg:w-52">
-              <Skeleton className="w-[200px] h-52 rounded " />
+              <Skeleton className=" aspect-square overflow-hidden rounded-xl " />
             </div>
           </CardContent>
           <CardFooter className="flex justify-between gap-6 items-center">

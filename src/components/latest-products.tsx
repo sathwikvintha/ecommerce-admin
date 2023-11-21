@@ -1,22 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
-import { NextArrow, PrevArrow } from "./ui/custom-arrows";
 import LatestProductsLoader from "./loading/latest-products-loading";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import Slider from "react-slick";
-import Image from "next/image";
-import { Button } from "./ui/button";
-import { Loader2, MoveRight } from "lucide-react";
+import {MoveRight } from "lucide-react";
 import Link from "next/link";
+import ProductCard from "./product-card";
 
 interface Item {
   id: number;
@@ -43,39 +30,7 @@ export default function LatestProducts() {
   const [data, setData] = useState<RequestedProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  var settings = {
-    className: "center",
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
 
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-      {
-        breakpoint: 550,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-    autoplaySpeed: 1000,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-  };
   async function getProducts() {
     try {
       setLoading(true);
@@ -106,6 +61,7 @@ export default function LatestProducts() {
 
         </div>
       </div>
+      
       <section className="lg:-ml-9 w-full ">
         {loading ? (
           <div className="flex justify-center  ">
@@ -113,38 +69,8 @@ export default function LatestProducts() {
           </div>
         ) : data.length > 0 ? (
           <div className="grid grid-cols-1 ml-8 lg:ml-0 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mx-auto ">
-            {data.map((a) => (
-              <div key={a.id}>
-                <Card className="p-3 border-0  overflow-hidden">
-                  <CardHeader>
-                    <CardTitle>{a.name}</CardTitle>
-                    <CardDescription>{a.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="w-40 lg:w-52  ">
-                      <Slider {...settings}>
-                        {a.images.map((img) => (
-                          <div
-                            className="flex justify-center items-center"
-                            key={img.id}
-                          >
-                            <Image
-                              alt={a.name}
-                              src={img.url}
-                              width={300}
-                              height={200}
-                            />
-                          </div>
-                        ))}
-                      </Slider>
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex gap-5  items-center">
-                    <p className="font-semibold text-sm">Price: ₹{a.price}</p>
-                    <Button  size={"sm"} className="text-sm">Add to Cart</Button>
-                  </CardFooter>
-                </Card>
-              </div>
+            {data.map((data) => (
+              <ProductCard data={data}/>
             ))}
           </div>
         ) : null}
