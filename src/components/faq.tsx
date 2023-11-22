@@ -15,17 +15,17 @@ const content =
 export default function Faq() {
   return (
     <MaxWidthWrapper className="mt-6 mb-10">
-      <h1 className="text-center text-3xl font-semibold">
+      <h1 className="text-center text-2xl lg:text-3xl font-semibold">
         Frequently asked questions
       </h1>
       <Accordion type="single" className="mt-6" collapsible>
         <AccordionItem value="item-1">
-          <AccordionTrigger className="text-xl font-semibold">What is SNX?</AccordionTrigger>
-          <AccordionContent className="text-lg">{content}</AccordionContent>
+          <AccordionTrigger className="lg:text-xl font-semibold">What is SNX?</AccordionTrigger>
+          <AccordionContent className="lg:text-lg">{content}</AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2" >
-          <AccordionTrigger  className="text-xl font-semibold">Where can I sell my product</AccordionTrigger>
-          <AccordionContent  className="text-lg">
+          <AccordionTrigger  className="lg:text-xl font-semibold">Where can I sell my product</AccordionTrigger>
+          <AccordionContent  className="lg:text-lg">
             You can sell your product through our ecommerce website which can be
             accessed by the students of shiv nadar university, when you login
             into the website you will find an sell option or click{" "}
@@ -38,8 +38,8 @@ export default function Faq() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger  className="text-xl font-semibold">How my product is verifed?</AccordionTrigger>
-          <AccordionContent  className="text-lg">{content2}</AccordionContent>
+          <AccordionTrigger  className="lg:text-xl font-semibold">How my product is verifed?</AccordionTrigger>
+          <AccordionContent  className="lg:text-lg">{content2}</AccordionContent>
         </AccordionItem>
       </Accordion>
     </MaxWidthWrapper>
