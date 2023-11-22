@@ -29,7 +29,7 @@ const Cart = () => {
   }, [])
 
   const cartTotal = items.reduce(
-    (total, { product }) => total + product.price,
+    (total, { product }) => total + product?.price,
     0
   )
 
@@ -57,7 +57,7 @@ const Cart = () => {
                 {items.map(({ product }) => (
                   <CartItem
                     product={product}
-                    key={product.id}
+                    key={product?.id}
                   />
                 ))}
               </ScrollArea>

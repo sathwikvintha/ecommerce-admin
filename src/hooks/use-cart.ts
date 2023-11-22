@@ -23,13 +23,13 @@ export const useCart = create<CartState>()(
         set((state) => {
           // Check if the product with the same ID is already in the cart
           const existingItem = state.items.find(
-            (item) => item.product.id === product.id
+            (item) => item.product?.id === product.id
           )
 
           if (existingItem) {
             return {
               items: state.items.map((item) =>
-                item.product.id === product.id
+                item.product?.id === product.id
                   ? { product }
                   : item
               ),
@@ -41,7 +41,7 @@ export const useCart = create<CartState>()(
       removeItem: (id) =>
         set((state) => ({
           items: state.items.filter(
-            (item) => item.product.id !== id
+            (item) => item.product?.id !== id
           ),
         })),
       clearCart: () => set({ items: [] }),
