@@ -40,6 +40,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     getProduct(params);
   });
+  
   return (
     <MaxWidthWrapper className="bg-white">
       <div className="bg-white">

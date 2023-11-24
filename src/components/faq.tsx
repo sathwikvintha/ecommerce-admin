@@ -24,7 +24,7 @@ export default function Faq() {
           <AccordionContent className="lg:text-lg">{content}</AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2" >
-          <AccordionTrigger  className="lg:text-xl font-semibold">Where can I sell my product</AccordionTrigger>
+          <AccordionTrigger  className="lg:text-xl font-semibold">Where can I sell my product?</AccordionTrigger>
           <AccordionContent  className="lg:text-lg">
             You can sell your product through our ecommerce website which can be
             accessed by the students of shiv nadar university, when you login

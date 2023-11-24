@@ -1,5 +1,4 @@
 'use client'
-
 import { Button } from '@/components/ui/button'
 import { useCart } from '@/hooks/use-cart'
 import { cn, formatPrice } from '@/lib/utils'
@@ -8,14 +7,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import {sendCheckout} from '../../../actions/send-checkout'
 
 const Page = () => {
-  const { items, removeItem } = useCart()
+  const { items, removeItem,clearCart } = useCart()
 
   const router = useRouter()
-
-  
-
   const productIds = items.map(({ product }) => product.id)
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
@@ -29,6 +26,13 @@ const Page = () => {
   )
 
   const fee = 1
+
+
+
+   function handleCheckout(){
+    router.push("/cart/checkout")
+    
+  }
 
   return (
     <div className='bg-white'>
@@ -186,7 +190,7 @@ const Page = () => {
             <div className='mt-6'>
               <Button
                 className='w-full'
-                size='lg'>
+                size='lg' onClick={handleCheckout}>
                 Checkout
               </Button>
             </div>

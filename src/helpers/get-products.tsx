@@ -1,7 +1,7 @@
 
 export default async function getProducts({ id}: { id?: string }) {
     const response = await fetch(
-        "https://admin-dashboard-seven-bay.vercel.app/api/products"
+        "https://admin-dashboard-seven-bay.vercel.app/api/product"
       );
       const data = await response.json();
       if(!id){
