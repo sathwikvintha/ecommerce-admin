@@ -1,26 +1,39 @@
 "use server";
 
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Plunk from "@plunk/node";
 
 const plunk = new Plunk(process.env.PLUNK_API_KEY);
-export const sendCheckout = async (id,email,name,userphoneNo,url,ownerPhone) => {
-    console.log(id,email,name,userphoneNo,url,ownerPhone)
+export const sendCheckout = async (id,owneremail,name,userphoneNo,url,ownerPhone) => {
+    console.log(id,owneremail,name,userphoneNo,url,ownerPhone)
+
+    const { getUser } = await getKindeServerSession();
+    const {email}=await getUser()
 
 
+
+    console.log(email,"user email")
+    console.log(owneremail,"user name")
     await fetch(`https://admin-dashboard-seven-bay.vercel.app/api/products/${id}`, {
       method: "PUT",
     });
+
   const response = await plunk.emails.send({
     to: email,
-    subject: "Here is the product owner details",
+    subject: "VOILA! Your SNX Order is Confirmed.",
     body: `<div style="font-size: 18px;">
     Hello ,
     <hr style="width: 0px;">
-    We hope you doing well.Here is the product owner details
+    We're excited to inform you that your recent order with SNX is Confirmed.
+    You can now contact the seller at 
     <hr style="width: 0px;">
-    Email: ${email}
+    Email: ${owneremail}
     <hr style="width: 0px;">
     phone: ${ownerPhone}
+    <hr style="width: 0px;">
+    Thank you for choosing SNX.
+Happy shopping!
+
     <hr style="width: 0px;">
     Warm Regards,
     <hr style="width: 0px;">
@@ -30,24 +43,29 @@ export const sendCheckout = async (id,email,name,userphoneNo,url,ownerPhone) => 
   });
 
   const respose1=await plunk.emails.send({
-    to: email,
-    subject: "Hey product is ordered",
+    to: owneremail,
+    subject: " Hurray! Your product has been purchased.",
     body: `<div style="font-size: 18px;">
     Hello ,
     <hr style="width: 0px;">
-    We hope you doing well this is to tell the product you posted on SNX has been ordered by a user
-    Here are the user details
+    We're excited to inform you that your product has been purchased.
+    Here are the buyer details. 
     <hr style="width: 0px;">
     Email: ${email}
     <hr style="width: 0px;">
     phone: ${userphoneNo}
     <hr style="width: 0px;">
     Here is the payment screenshot 
-    <img src=${url} alt="payment screenshot">
     <hr style="width: 0px;">
-    If you haven;t received the payment please send an email to ${email}
+    <img src=${url}  style="width: 200px; height:200px;" alt="payment screenshot">
+    <hr style="width: 0px;">
+    If you have any queries, please don't hesitate to contact our customer support team at [lr888@snu.edu.in]. 
+    <hr style="width: 0px;">
     Warm Regards,
     <hr style="width: 0px;">
+    Thank you for your excellent business. We look forward to work together on future transactions.
+    <hr style="width: 0px;">
+
     SNX Team
     </div>`,
 
