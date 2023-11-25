@@ -24,7 +24,7 @@ export const sendCheckout = async (id,owneremail,name,userphoneNo,url,ownerPhone
     body: `<div style="font-size: 18px;">
     Hello ,
     <hr style="width: 0px;">
-    We're excited to inform you that your recent order with SNX is Confirmed.
+    We are excited to inform you that your recent order with SNX is Confirmed.
     You can now contact the seller at 
     <hr style="width: 0px;">
     Email: ${owneremail}
@@ -48,7 +48,7 @@ Happy shopping!
     body: `<div style="font-size: 18px;">
     Hello ,
     <hr style="width: 0px;">
-    We're excited to inform you that your product has been purchased.
+    We are excited to inform you that your product has been purchased.
     Here are the buyer details. 
     <hr style="width: 0px;">
     Email: ${email}
