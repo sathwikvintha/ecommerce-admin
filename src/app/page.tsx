@@ -3,7 +3,7 @@ import Faq from "@/components/faq";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
 import LatestProducts from "@/components/latest-products";
-import { LogoutLink, getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import {getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
 export default async  function Home() {

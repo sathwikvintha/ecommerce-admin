@@ -58,7 +58,7 @@ const AddProductPage: FC<AddProductPageProps> = () => {
   async function onSubmit(productData: z.infer<typeof FormSchema>) {
     try {
       setLoading(true)
-      const response=await fetch("https://admin-dashboard-seven-bay.vercel.app/api/requestedProducts",{
+      const response=await fetch("http://localhost:3000/api/requestedProducts",{
         method: "POST",
         body:JSON.stringify(productData)
   

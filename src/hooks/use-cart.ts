@@ -36,7 +36,7 @@ export const useCart = create<CartState>()(
             }
           }
 
-          return { items: [...state.items, { product, quantity: 1 }] }
+          return { items: [...state.items, {product }] }
         }),
       removeItem: (id) =>
         set((state) => ({

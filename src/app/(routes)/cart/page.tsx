@@ -34,6 +34,35 @@ const Page = () => {
     
   }
 
+  const createCheckoutSession = async ({ items }:any) => {
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ items }),
+      });
+  
+      if (!response.ok) {
+        console.error('Failed to create checkout session:', response.statusText);
+        return;
+      }
+  
+      const data = await response.json();
+      const { url } = data;
+      console.log(url)
+  
+      if (url) {
+        router.push(url);
+      }
+    } catch (error) {
+      console.error('Error creating checkout session:', error);
+    }
+  };
+
+  
+
   return (
     <div className='bg-white'>
       <div className='mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8'>
@@ -189,8 +218,12 @@ const Page = () => {
 
             <div className='mt-6'>
               <Button
+              
                 className='w-full'
-                size='lg' onClick={handleCheckout}>
+                onClick={() =>
+                  createCheckoutSession({ items})
+                }
+                size='lg' >
                 Checkout
               </Button>
             </div>

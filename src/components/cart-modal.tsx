@@ -20,6 +20,8 @@ import CartItem from './cart-item'
 
 const Cart = () => {
   const { items } = useCart()
+
+  console.log(items,"ji")
   const itemCount = items.length
 
   const [isMounted, setIsMounted] = useState<boolean>(false)

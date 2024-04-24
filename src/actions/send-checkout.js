@@ -4,19 +4,24 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import Plunk from "@plunk/node";
 
 const plunk = new Plunk(process.env.PLUNK_API_KEY);
-export const sendCheckout = async (id,owneremail,name,userphoneNo,url,ownerPhone) => {
-    console.log(id,owneremail,name,userphoneNo,url,ownerPhone)
+export const sendCheckout = async (
+  id,
+  owneremail,
+  name,
+  userphoneNo,
+  url,
+  ownerPhone
+) => {
+  console.log(id, owneremail, name, userphoneNo, url, ownerPhone);
 
-    const { getUser } = await getKindeServerSession();
-    const {email}=await getUser()
+  const { getUser } = getKindeServerSession();
+  const { email } = await getUser();
 
-
-
-    console.log(email,"user email")
-    console.log(owneremail,"user name")
-    await fetch(`https://admin-dashboard-seven-bay.vercel.app/api/products/${id}`, {
-      method: "PUT",
-    });
+  console.log(email, "user email");
+  console.log(owneremail, "user name");
+  await fetch(`http://localhost:3000/api/products/${id}`, {
+    method: "PUT",
+  });
 
   const response = await plunk.emails.send({
     to: email,
@@ -39,10 +44,9 @@ Happy shopping!
     <hr style="width: 0px;">
     SNX Team
     </div>`,
-
   });
 
-  const respose1=await plunk.emails.send({
+  const respose1 = await plunk.emails.send({
     to: owneremail,
     subject: " Hurray! Your product has been purchased.",
     body: `<div style="font-size: 18px;">
@@ -68,8 +72,7 @@ Happy shopping!
 
     SNX Team
     </div>`,
-
   });
 
-  console.log(response)
+  console.log(response);
 };

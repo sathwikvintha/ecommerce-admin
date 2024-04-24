@@ -42,7 +42,7 @@ export default function CategoryShowCase() {
 
   async function getCategories() {
     try {
-      const response = await fetch("https://admin-dashboard-seven-bay.vercel.app/api/category");
+      const response = await fetch("http://localhost:3000/api/category");
       const data = await response.json();
       console.log(data.messsage);
       setCategories(data.message);

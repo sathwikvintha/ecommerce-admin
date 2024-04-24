@@ -35,7 +35,7 @@ export default function LatestProducts() {
     try {
       setLoading(true);
       const response = await fetch(
-        "https://admin-dashboard-seven-bay.vercel.app/api/product"
+        "http://localhost:3000/api/product"
       );
       const data = await response.json();
       setData(data.message);
